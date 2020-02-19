@@ -40,7 +40,7 @@ public class ProductSeviceTest {
 
     @Test
     public void addProduct() throws Exception {
-        FileInputStream fis = new FileInputStream(new File("C:/Users/vladk/Desktop/coffeeshop/src/test/resources/9280.jpg"));
+        FileInputStream fis = new FileInputStream(new File("C:/Users/vladk/Desktop/mycoffeeshop/src/test/resources/9280.jpg"));
         MultipartFile file = new MockMultipartFile("file", "9280.jpg", "", fis);
         Product product = productSevice.addProduct(
                 "Pelican Rouge",
