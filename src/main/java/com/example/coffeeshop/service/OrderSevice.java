@@ -28,7 +28,7 @@ public class OrderSevice {
     private BasketListRepo basketListRepo;
 
     @Autowired
-    private UserRepo userRepo;
+    private UserSevice userSevice;
 
     public void createOrder(Long userId, String paymentMethod){
         Order order = new Order();
@@ -55,14 +55,14 @@ public class OrderSevice {
         }
         order.setPaymentMethod(paymentMethod);
 
-        order.setUser(userRepo.findById(userId).get());
+        order.setUser(userSevice.findById(userId));
         orderRepo.save(order);
 
         basketSevice.deleteAllBasket(userId);
     }
 
     public void saveOrder(Long orderId, String status, String payment){
-        Order order = orderRepo.findById(orderId).get();
+        Order order = findById(orderId);
 
         order.setStatus(status);
         order.setPayment(payment);
@@ -100,7 +100,7 @@ public class OrderSevice {
         return orderRepo.findAll();
     }
 
-    public Order findOrderById(Long id){
+    public Order findById(Long id){
         return orderRepo.findById(id).get();
     }
 }

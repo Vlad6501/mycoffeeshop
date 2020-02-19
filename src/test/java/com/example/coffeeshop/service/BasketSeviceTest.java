@@ -166,16 +166,27 @@ public class BasketSeviceTest {
     public void deleteProduct() {
         User user = new User();
         Product product = new Product();
+        Product productTwo = new Product();
+        product.setId(1L);
+        productTwo.setId(2L);
         Basket basket = new Basket();
         BasketList basketList = new BasketList();
         basketList.setProductList(new ArrayList<>());
         basketList.setNumberList(new ArrayList<>());
         basketList.getProductList().add(product.getId());
+        basketList.getProductList().add(productTwo.getId());
 
         product.setNumber(5);
         product.setPrice(125);
+        productTwo.setNumber(9);
+        productTwo.setPrice(340);
         int checkNumber = 2;
         basketList.getNumberList().add(checkNumber);
+        basketList.getNumberList().add(checkNumber);
+        basket.setPrice(930);
+
+        int index = basketList.getProductList().indexOf(product.getId());
+        int number = basketList.getNumberList().get(index);
 
         Mockito.doReturn(basket)
                 .when(basketRepo)
@@ -186,8 +197,19 @@ public class BasketSeviceTest {
         Mockito.doReturn(product)
                 .when(productSevice)
                 .findProductForm(product.getId());
-        basketSevice.deleteAllBasket(user.getId());
-
         basketSevice.deleteProduct(user.getId(), product.getId());
+
+        Assert.assertEquals(7, product.getNumber());
+        Assert.assertEquals(9, productTwo.getNumber());
+        Assert.assertFalse(basketList.getProductList().contains(product.getId()));
+        Assert.assertEquals(checkNumber, number);
+        Assert.assertEquals(680, basket.getPrice());
+
+        Mockito.verify(basketRepo, Mockito.times(1))
+                .save(ArgumentMatchers.any(Basket.class));
+        Mockito.verify(basketListRepo, Mockito.times(1))
+                .save(ArgumentMatchers.any(BasketList.class));
+        Mockito.verify(productSevice, Mockito.times(1))
+                .saveProduct(ArgumentMatchers.any(Product.class));
     }
 }

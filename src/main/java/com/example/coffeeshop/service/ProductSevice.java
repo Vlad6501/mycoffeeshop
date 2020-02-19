@@ -115,12 +115,14 @@ public class ProductSevice {
     }
 
     public boolean productFormCheckMessage(Long userId, Long productId){
-        BasketList basketList = basketSevice.findBasketListByUserId(userId);
-        if(basketList.getProductList().contains(productId)){
-            if(basketList.isCheckAdd()){
-                basketList.setCheckAdd(false);
-                basketSevice.saveBasketList(basketList);
-                return true;
+        if(userId != 0) {
+            BasketList basketList = basketSevice.findBasketListByUserId(userId);
+            if (basketList.getProductList().contains(productId)) {
+                if (basketList.isCheckAdd()) {
+                    basketList.setCheckAdd(false);
+                    basketSevice.saveBasketList(basketList);
+                    return true;
+                }
             }
         }
         return false;

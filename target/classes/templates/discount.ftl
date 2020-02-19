@@ -1,5 +1,6 @@
 <#import 'parts/navbar.ftl' as c>
 <#import 'parts/pager.ftl' as g>
+<#include 'parts/security.ftl'>
 
 
 <@c.page>
@@ -24,7 +25,7 @@
                                     <h5 class="card-title">${product.productName}</h5>
                                     <#if product.number == 0 >
                                         <div class="stock available mb-3" title="Доступность">
-                                            <strong class="type">Нет в наличии</strong>
+                                            <strong class="type" style="color: #ff0306">Нет в наличии</strong>
                                         </div>
                                     </#if>
                                     <#if product.discount == 0>
@@ -43,7 +44,7 @@
                                             </div>
                                         </div>
                                     <#else >
-                                        <strong class="type">Старая цена(${product.price} грн.)</strong>
+                                        <strong class="type" style="color: #ff0306">Старая цена(${product.price} грн.)</strong>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
                                                 <a href="/katalog/product/${product.id}" class="btn btn-dark" role="button">Купить</a>

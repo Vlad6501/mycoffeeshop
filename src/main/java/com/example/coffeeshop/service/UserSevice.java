@@ -170,4 +170,8 @@ public class UserSevice implements UserDetailsService {
     public List<User> findListUsername(String filter) {
         return userRepo.findListByUsername(filter);
     }
+
+    public User findById(Long id) {
+        return userRepo.findById(id).get();
+    }
 }

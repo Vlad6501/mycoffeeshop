@@ -19,6 +19,7 @@ public interface ProductRepo extends CrudRepository<Product, Long> {
 
     Optional<Product> findById(Long id);
 
+
     @Query("select new com.example.coffeeshop.domain.dto.ProductDto(" +
             "   p, " +
             "   count(pl), " +

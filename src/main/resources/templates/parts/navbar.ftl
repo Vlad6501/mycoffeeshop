@@ -10,7 +10,7 @@
     <title>Coffeeshop</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-
+    <link rel="stylesheet" href="/static/style.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
@@ -22,7 +22,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <a class="navbar-brand" href="/">
-            <img src="https://coffeum.ua/image/cache/catalog/xStarbucks-Logo-64x64.png.pagespeed.ic.KTyDIbi2XP.png" width="30" height="30" class="d-inline-block align-top" alt=""/>
+            <img src="/img/xStarbucks-Logo-64x64.png.pagespeed.ic.KTyDIbi2XP.png" width="35" height="35" class="d-inline-block align-top" alt=""/>
             <span class="ml-1">COFFEESHOP</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

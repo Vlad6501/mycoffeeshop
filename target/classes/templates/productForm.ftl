@@ -24,14 +24,14 @@
                     </div>
                 <#else>
                     <div class="stock available" title="Доступность">
-                        <strong class="type">Нет в наличии</strong>
+                        <strong class="type" style="color: #ff0306">Нет в наличии</strong>
                     </div>
                 </#if>
                 <h4 class="page-title">Цена:</h4>
                 <#if product.discount == 0>
                     <strong class="type">${product.price} грн.</strong>
                 <#else >
-                    <strong class="type">Старая цена(${product.price} грн.)</strong>
+                    <strong class="type" style="color: #ff0306">Старая цена(${product.price} грн.)</strong>
                     <strong class="type">${product.discount} грн.</strong>
                 </#if>
                 <h5 class="page-title">Количество:</h5>
@@ -45,11 +45,6 @@
                             <input type="hidden" value="${product.id}" name="productID">
                             <input type="hidden" value="${_csrf.token}" name="_csrf">
                             <button type="submit" class="btn btn-dark">Добавить в корзину</button>
-                            <#if true>
-                                <i class="fas fa-heart"></i>
-                            <#else>
-                            <i class="far fa-heart"></i>
-                            </#if>
                         </div>
                         <#if message>
                             <strong class="type">Недостаточно товара</strong>
