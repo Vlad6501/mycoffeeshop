@@ -135,7 +135,7 @@ public class UserSevice implements UserDetailsService {
         if(!StringUtils.isEmpty(user.getEmail())){
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Coffeeshop. Please, visit next link: http://localhost:8080/activate/%s",
+                            "Welcome to Coffeeshop. Please, visit next link: http://mycoffeeshop.herokuapp.com/activate/%s",
                     user.getUsername(),
                     user.getActivationCode()
             );
