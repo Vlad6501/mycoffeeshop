@@ -1,5 +1,6 @@
 package com.example.coffeeshop.controller;
 
+import java.util.Set;
 
 import com.example.coffeeshop.domain.*;
 import com.example.coffeeshop.domain.dto.ProductDto;
@@ -17,8 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.Set;
 
 @Controller
 public class KatalogController {
@@ -49,22 +48,20 @@ public class KatalogController {
     }
 
     @PostMapping("/katalog/product")
-    public String addProductInBasket(@RequestParam int checkNumber,
+    public String addProductInBasket(@AuthenticationPrincipal User user,
+                                     @RequestParam int checkNumber,
                                      @RequestParam("productID") Long productId,
                                      @RequestParam("userID") Long userId){
-        if(userId == 0){
-            return "/login";
-        }
+        if(user != null){
+            Product products = productSevice.findProductForm(productId);
 
-        Product products = productSevice.findProductForm(productId);
-
-        if(basketSevice.basketAddCheck(userId, products, checkNumber)){
-            basketSevice.basketAdd(userId, productId, checkNumber);
-            return "redirect:/account/basket";
-        }
-        else {
+            if(basketSevice.basketAddCheck(userId, products, checkNumber)){
+                basketSevice.basketAdd(userId, productId, checkNumber);
+                return "redirect:/account/basket";
+            }
             return "redirect:/katalog/product/" + productId + "/" + userId;
         }
+        return "redirect:/login";
     }
 
     @GetMapping("/katalog/{category}")

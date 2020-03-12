@@ -44,14 +44,14 @@ public class AccountController {
     }
 
     @PostMapping("/account/information")
-    public String add(@RequestParam String firstname,
+    public String add(@RequestParam("userID") Long userId,
+                      @RequestParam String firstname,
                       @RequestParam String lastname,
                       @RequestParam String patronymic,
                       @RequestParam String email,
                       @RequestParam String phone,
                       @RequestParam String city,
                       @RequestParam String address,
-                      @RequestParam("userID") Long userId,
                       Model model) {
         Information info = informationSevice.findByUser(userId);
         informationSevice.addInfo(firstname, lastname, patronymic, email, phone, city, address, info);
@@ -77,7 +77,7 @@ public class AccountController {
     }
 
     @GetMapping("/account/favoriteProducts")
-    public String favoriteProducts( @AuthenticationPrincipal User user,
+    public String favoriteProducts(@AuthenticationPrincipal User user,
                                    @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
                                    Model model) {
         model.addAttribute("page", productSevice.findAllPage(pageable, user));

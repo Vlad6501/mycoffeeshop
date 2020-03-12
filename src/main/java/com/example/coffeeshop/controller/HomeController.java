@@ -4,7 +4,6 @@ import com.example.coffeeshop.domain.User;
 import com.example.coffeeshop.domain.dto.ProductDto;
 import com.example.coffeeshop.service.ProductSevice;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,14 +12,16 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
 
     @Autowired
     private ProductSevice productSevice;
 
-    @GetMapping("/")
+    @GetMapping
     public String home(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
                        @AuthenticationPrincipal User user,
                        Model model) {
@@ -29,7 +30,7 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/discount")
+    @GetMapping("discount")
     public String discount(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable,
                            @AuthenticationPrincipal User user,
                            Model model){
@@ -40,22 +41,22 @@ public class HomeController {
         return "discount";
     }
 
-    @GetMapping("/aboutUs")
+    @GetMapping("aboutUs")
     public String aboutUs(){
         return "aboutUs";
     }
 
-    @GetMapping("/delivery")
+    @GetMapping("delivery")
     public String delivery(){
         return "delivery";
     }
 
-    @GetMapping("/contact")
+    @GetMapping("contact")
     public String contact(){
         return "contact";
     }
 
-    @GetMapping("/warranty")
+    @GetMapping("warranty")
     public String warranty(){
         return "warranty";
     }
