@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 
 @Controller
@@ -110,6 +111,7 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete/{productId}")
+    @Transactional
     public String deleteProduct(@PathVariable Long productId){
         prodSpecificationRepo.deleteByProductId(productId);
         productRepo.deleteById(productId);
